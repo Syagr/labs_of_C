@@ -1,0 +1,149 @@
+using System;
+
+// Визначення предметної області: транспорт
+// Абстрактний клас Transport
+abstract class Transport
+{
+    // Властивості для назви та швидкості
+    public string Name { get; set; }
+    public int Speed { get; set; }
+
+    // Конструктор з параметрами
+    public Transport(string name, int speed)
+    {
+        Name = name;
+        Speed = speed;
+    }
+
+    // Віртуальний метод для отримання інформації про транспорт
+    public virtual string get_info()
+    {
+        return $"Назва: {Name}, Швидкість: {Speed} км/год";
+    }
+}
+
+// Підклас Car, який успадковує від Transport
+class Car : Transport
+{
+    // Властивість для кількості місць
+    public int Seats { get; set; }
+
+    // Конструктор з параметрами
+    public Car(string name, int speed, int seats) : base(name, speed)
+    {
+        Seats = seats;
+    }
+
+    // Перевизначення методу get_info() для отримання інформації про автомобіль
+    public override string get_info()
+    {
+        return base.get_info() + $", Місця: {Seats}";
+    }
+}
+
+// Підклас Train, який успадковує від Transport
+class Train : Transport
+{
+    // Властивість для кількості вагонів
+    public int Wagons { get; set; }
+
+    // Конструктор з параметрами
+    public Train(string name, int speed, int wagons) : base(name, speed)
+    {
+        Wagons = wagons;
+    }
+
+    // Перевизначення методу get_info() для отримання інформації про потяг
+    public override string get_info()
+    {
+        return base.get_info() + $", Вагони: {Wagons}";
+    }
+}
+
+// Підклас Plane, який успадковує від Transport
+class Plane : Transport
+{
+    // Властивість для висоти польоту
+    public int Altitude { get; set; }
+
+    // Конструктор з параметрами
+    public Plane(string name, int speed, int altitude) : base(name, speed)
+    {
+        Altitude = altitude;
+    }
+
+    // Перевизначення методу get_info() для отримання інформації про літак
+    public override string get_info()
+    {
+        return base.get_info() + $", Висота: {Altitude} м";
+    }
+}
+
+// Підклас Ship, який успадковує від Transport
+class Ship : Transport
+{
+    // Властивість для тоннажу
+    public int Tonnage { get; set; }
+
+    // Конструктор з параметрами
+    public Ship(string name, int speed, int tonnage) : base(name, speed)
+    {
+        Tonnage = tonnage;
+    }
+
+    // Перевизначення методу get_info() для отримання інформації про корабель
+    public override string get_info()
+    {
+        return base.get_info() + $", Тоннаж: {Tonnage} т";
+    }
+}
+
+// Підклас Bicycle, який успадковує від Transport
+class Bicycle : Transport
+{
+    // Властивість для типу велосипеда
+    public string Type { get; set; }
+
+    // Конструктор з параметрами
+    public Bicycle(string name, int speed, string type) : base(name, speed)
+    {
+        Type = type;
+    }
+
+     // Приховання методу get_info() для отримання інформації про велосипед (не виртуальний метод)
+     public new string get_info()
+     {
+         return $"Назва: {Name}, Тип: {Type}";
+     }
+}
+
+// Тестування класів
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Створення об'єктів типу Car, Train, Plane, Ship, Bicycle
+        Car c1 = new Car("Tesla Model 3", 250, 5);
+        Train t1 = new Train("Інтерсіті+", 160, 10);
+        Plane p1 = new Plane("Boeing 747", 900, 10000);
+        Ship s1 = new Ship("Титанік", 40, 46000);
+        Bicycle b1 = new Bicycle("Giant", 20, "Гірський");
+
+        // Виклик методу get_info() для кожного об'єкта
+        Console.WriteLine(c1.get_info());
+        Console.WriteLine(t1.get_info());
+        Console.WriteLine(p1.get_info());
+        Console.WriteLine(s1.get_info());
+        Console.WriteLine(b1.get_info());
+
+        /* Виведення на екран:
+
+        Назва: Tesla Model 3, Швидкість: 250 км/год, Місця: 5
+        Назва: Інтерсіті+, Швидкість: 160 км/год, Вагони: 10
+        Назва: Boeing 747, Швидкість: 900 км/год, Висота: 10000 м
+        Назва: Титанік, Швидкість: 40 км/год, Тоннаж: 46000 т
+        Назва: Giant, Тип: Гірський
+
+        */
+    }
+}

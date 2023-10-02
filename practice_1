@@ -1,0 +1,57 @@
+public class User
+{
+    private string _name;
+    private string _address;
+    private string _phoneNumber;
+    private List<Account> _accounts;
+
+    public User(string name, string address, string phoneNumber)
+    {
+        _name = name;
+        _address = address;
+        _phoneNumber = phoneNumber;
+        _accounts = new List<Account>();
+    }
+
+    public string GetName()
+    {
+        return _name;
+    }
+
+    public string GetAddress()
+    {
+        return _address;
+    }
+
+    public string GetPhoneNumber()
+    {
+        return _phoneNumber;
+    }
+
+    public void AddAccount(Account account)
+    {
+        _accounts.Add(account);
+    }
+
+    public List<Account> GetAccounts()
+    {
+        return _accounts;
+    }
+}
+
+public class Account
+{
+    private int _accountNumber;
+    private decimal _balance;
+
+    public Account(int accountNumber, decimal balance)
+    {
+        _accountNumber = accountNumber;
+        _balance = balance;
+    }
+
+    public int GetAccountNumber()
+    {
+        **return _accountNumber;**
+    }
+}

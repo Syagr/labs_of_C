@@ -1,0 +1,89 @@
+sing System;
+
+// Абстрактний клас Person
+abstract class Person
+{
+    // Властивості для імені та віку
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    // Конструктор з параметрами
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+
+    // Віртуальний метод для отримання інформації про особу
+    public virtual string get_info()
+    {
+        return $"Ім'я: {Name}, Вік: {Age}";
+    }
+}
+
+// Підклас Student, який успадковує від Person
+class Student : Person
+{
+    // Властивість для курсу навчання
+    public int Course { get; set; }
+
+    // Конструктор з параметрами
+    public Student(string name, int age, int course) : base(name, age)
+    {
+        Course = course;
+    }
+
+    // Перевизначення методу get_info() для отримання інформації про студента
+    public override string get_info()
+    {
+        return base.get_info() + $", Курс: {Course}";
+    }
+}
+
+// Підклас Teacher, який успадковує від Person
+class Teacher : Person
+{
+    // Властивість для предмету викладання
+    public string Subject { get; set; }
+
+    // Конструктор з параметрами
+    public Teacher(string name, int age, string subject) : base(name, age)
+    {
+        Subject = subject;
+    }
+
+    // Перевизначення методу get_info() для отримання інформації про вчителя
+    public override string get_info()
+    {
+        return base.get_info() + $", Предмет: {Subject}";
+    }
+}
+
+// Тестування класів
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Створення об'єктів типу Student та Teacher
+        Student s1 = new Student("Анна", 19, 2);
+        Student s2 = new Student("Олег", 20, 3);
+        Teacher t1 = new Teacher("Іван", 35, "Математика");
+        Teacher t2 = new Teacher("Марина", 40, "Фізика");
+
+        // Виклик методу get_info() для кожного об'єкта
+        Console.WriteLine(s1.get_info());
+        Console.WriteLine(s2.get_info());
+        Console.WriteLine(t1.get_info());
+        Console.WriteLine(t2.get_info());
+        
+        /* Виведення на екран:
+        
+        Ім'я: Анна, Вік: 19, Курс: 2
+        Ім'я: Олег, Вік: 20, Курс: 3
+        Ім'я: Іван, Вік: 35, Предмет: Математика
+        Ім'я: Марина, Вік: 40, Предмет: Фізика
+        
+        */
+        
+    }
+}
