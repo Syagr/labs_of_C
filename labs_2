@@ -18,7 +18,7 @@ abstract class Transport
     // Віртуальний метод для отримання інформації про транспорт
     public virtual string get_info()
     {
-        return $"Назва: {Name}, Швидкість: {Speed} км/год";
+        return $"Name: {Name}, Speed: {Speed} км/год";
     }
 }
 
@@ -37,7 +37,7 @@ class Car : Transport
     // Перевизначення методу get_info() для отримання інформації про автомобіль
     public override string get_info()
     {
-        return base.get_info() + $", Місця: {Seats}";
+        return base.get_info() + $", Locations: {Seats}";
     }
 }
 
@@ -56,7 +56,7 @@ class Train : Transport
     // Перевизначення методу get_info() для отримання інформації про потяг
     public override string get_info()
     {
-        return base.get_info() + $", Вагони: {Wagons}";
+        return base.get_info() + $", Wagons: {Wagons}";
     }
 }
 
@@ -75,7 +75,7 @@ class Plane : Transport
     // Перевизначення методу get_info() для отримання інформації про літак
     public override string get_info()
     {
-        return base.get_info() + $", Висота: {Altitude} м";
+        return base.get_info() + $", Height: {Altitude} м";
     }
 }
 
@@ -94,7 +94,7 @@ class Ship : Transport
     // Перевизначення методу get_info() для отримання інформації про корабель
     public override string get_info()
     {
-        return base.get_info() + $", Тоннаж: {Tonnage} т";
+        return base.get_info() + $", Тonage: {Tonnage} т";
     }
 }
 
@@ -110,11 +110,11 @@ class Bicycle : Transport
         Type = type;
     }
 
-     // Приховання методу get_info() для отримання інформації про велосипед (не виртуальний метод)
-     public new string get_info()
-     {
-         return $"Назва: {Name}, Тип: {Type}";
-     }
+    // Приховання методу get_info() для отримання інформації про велосипед (не виртуальний метод)
+    public new string get_info()
+    {
+        return $"Name: {Name}, Type: {Type}";
+    }
 }
 
 // Тестування класів
@@ -124,10 +124,10 @@ class Program
     {
         // Створення об'єктів типу Car, Train, Plane, Ship, Bicycle
         Car c1 = new Car("Tesla Model 3", 250, 5);
-        Train t1 = new Train("Інтерсіті+", 160, 10);
+        Train t1 = new Train("Intersity+", 160, 10);
         Plane p1 = new Plane("Boeing 747", 900, 10000);
-        Ship s1 = new Ship("Титанік", 40, 46000);
-        Bicycle b1 = new Bicycle("Giant", 20, "Гірський");
+        Ship s1 = new Ship("Titanik", 40, 46000);
+        Bicycle b1 = new Bicycle("Giant", 20, "Mountainous");
 
         // Виклик методу get_info() для кожного об'єкта
         Console.WriteLine(c1.get_info());

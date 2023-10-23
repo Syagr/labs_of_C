@@ -1,0 +1,32 @@
+using System;
+
+public static class ArrayExtensions
+{
+    public static int CountOccurrences<T>(this T[] array, T element)
+    {
+        int count = 0;
+        foreach (var item in array)
+        {
+            if (item.Equals(element))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {   int[] numbers = { 1, 2, 3, 4, 2, 2, 3, 5, 2 };
+
+        int countTwos = numbers.CountOccurrences(2);
+        Console.WriteLine($"The number of occurrences of a number 2: {countTwos}");
+
+        string[] fruits = { "apple", "banana", "orange", "apple", "pear", "apple" };
+
+        int countApples = fruits.CountOccurrences("apple");
+        Console.WriteLine($"The number of occurrences of the word 'apple': {countApples}");
+    }
+}

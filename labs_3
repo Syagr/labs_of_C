@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+
+// Subject area: Animals
+// Generic class for representing animals
+class Animal<T>
+{
+    public string Name { get; set; }
+    public T Species { get; set; }
+
+    public Animal(string name, T species)
+    {
+        Name = name;
+        Species = species;
+    }
+}
+
+// Derived classes
+class Dog : Animal<string>
+{
+    public Dog(string name, string breed) : base(name, breed) { }
+}
+
+class Cat : Animal<string>
+{
+    public Cat(string name, string breed) : base(name, breed) { }
+}
+
+class Fish : Animal<string>
+{
+    public Fish(string name, string type) : base(name, type) { }
+}
+
+class Bird : Animal<string>
+{
+    public Bird(string name, string type) : base(name, type) { }
+}
+
+class Reptile : Animal<string>
+{
+    public Reptile(string name, string type) : base(name, type) { }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Create a list to store animals
+        List<Animal<string>> animals = new List<Animal<string>>();
+
+        // Add animals to the list
+        animals.Add(new Dog("Baron", "Labrador"));
+        animals.Add(new Cat("Victoria", "Siamese"));
+        animals.Add(new Fish("Guppy", "Goldfish"));
+        animals.Add(new Bird("Kesha", "Parrot"));
+        animals.Add(new Reptile("Spike", "Lizard"));
+
+        // Display information about animals from the list
+        foreach (var animal in animals)
+        {
+            Console.WriteLine($"Animal: {animal.Name}, Species: {animal.Species}");
+        }
+    }
+}
