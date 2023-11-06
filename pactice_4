@@ -1,0 +1,39 @@
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+public static class HTTPClient
+{
+    public static async Task<string> SendGETRequest(string url)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Ошибка при отправке GET-запроса: {ex.Message}");
+                return null;
+            }
+        }
+    }
+}
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        string url = "https://www.example.com"; // Замените на нужный URL
+
+        string response = await HTTPClient.SendGETRequest(url);
+
+        if (response != null)
+        {
+            Console.WriteLine(response);
+        }
+    }
+}
