@@ -1,0 +1,59 @@
+using System;
+
+// Створення власного типу виключення
+public class CustomException : Exception
+{
+    public DateTime Time { get; }
+
+    public CustomException(string message, DateTime time) : base(message)
+    {
+        Time = time;
+    }
+}
+
+// Створення класу та методу, який викликає виключення
+public class MyClass
+{
+    public static void CustomMethod()
+    {
+        DateTime currentTime = DateTime.Now;
+        throw new CustomException("Помилка в програмі", currentTime);
+    }
+}
+
+// Завдання із зірочкою: статичний клас для обробки виключень
+public static class ExceptionHandler
+{
+    public static void HandleException(Action method)
+    {
+        try
+        {
+            method();
+        }
+        catch (CustomException e)
+        {
+            Console.WriteLine($"Виникла помилка: {e.Message}");
+            Console.WriteLine($"Дата виникнення помилки: {e.Time}");
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Обробка виключення та виведення дати
+        try
+        {
+            MyClass.CustomMethod();
+        }
+        catch (CustomException e)
+        {
+            Console.WriteLine($"Виникла помилка: {e.Message}");
+            Console.WriteLine($"Дата виникнення помилки: {e.Time}");
+        }
+
+        // Використання статичного класу для обробки виключення
+        ExceptionHandler.HandleException(MyClass.CustomMethod);
+    }
+}
