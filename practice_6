@@ -1,0 +1,87 @@
+public interface ISorter
+{
+    void Sort(int[] numbers);
+}
+
+public class BubbleSorter : ISorter
+{
+    public void Sort(int[] numbers)
+    {
+        for (int i = 0; i < numbers.Length - 1; i++)
+        {
+            for (int j = 0; j < numbers.Length - i - 1; j++)
+            {
+                if (numbers[j] > numbers[j + 1])
+                {
+                    int temp = numbers[j];
+                    numbers[j] = numbers[j + 1];
+                    numbers[j + 1] = temp;
+                }
+            }
+        }
+    }
+}
+
+public class SelectionSorter : ISorter
+{
+    public void Sort(int[] numbers)
+    {
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            int minIndex = i;
+            for (int j = i + 1; j < numbers.Length; j++)
+            {
+                if (numbers[j] < numbers[minIndex])
+                {
+                    minIndex = j;
+                }
+            }
+
+            int temp = numbers[i];
+            numbers[i] = numbers[minIndex];
+            numbers[minIndex] = temp;
+        }
+    }
+}
+
+public class Sorter
+{
+    private ISorter sorter;
+
+    public Sorter(ISorter sorter)
+    {
+        this.sorter = sorter;
+    }
+
+    public void Sort(int[] numbers)
+    {
+        sorter.Sort(numbers);
+    }
+}
+
+public class Main
+{
+    public static void Main(string[] args)
+    {
+        
+        int[] numbers = { 5, 3, 1, 2, 4 };
+        Sorter sorter = new Sorter(new BubbleSorter());
+        sorter.Sort(numbers);
+        Console.WriteLine("Массив после сортировки методом пузырьковой сортировки:");
+        foreach (int number in numbers)
+        {
+            Console.Write(number + " ");
+        }
+        Console.WriteLine();
+
+        numbers = new int[] { 5, 3, 1, 2, 4 };
+        sorter = new Sorter(new SelectionSorter());
+        sorter.Sort(numbers);
+        Console.WriteLine("Массив после сортировки методом выбора:");
+        foreach (int number in numbers)
+        {
+            Console.Write(number + " ");
+        }
+        Console.WriteLine();
+    }
+}
