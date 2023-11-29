@@ -1,0 +1,17 @@
+public class MyClass
+{
+    public void DoSomething()
+    {
+        var myObject = new MyObject();
+
+        // Пробуем получить доступ к закрытому объекту
+        try
+        {
+            myObject.DoSomethingElse();
+        }
+        catch (ObjectDisposedException)
+        {
+            Console.WriteLine("Объект закрыт");
+        }
+    }
+}

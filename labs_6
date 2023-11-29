@@ -1,0 +1,67 @@
+using System;
+
+delegate void MyDelegate(string message);
+
+class Program
+{
+    static void Main()
+    {
+        MyDelegate myDelegate = new MyDelegate(PrintMessage);
+        myDelegate("Hello, custom delegate!");
+
+        Console.ReadLine();
+    }
+
+    static void PrintMessage(string message)
+    {
+        Console.WriteLine(message);
+    }
+}
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        UseAction(() => Console.WriteLine("Action executed."));
+        int resultFunc = UseFunc((a, b) => a + b, 5, 10);
+        bool resultPredicate = UsePredicate(x => x > 0, 7);
+
+        Console.WriteLine($"Func result: {resultFunc}");
+        Console.WriteLine($"Predicate result: {resultPredicate}");
+
+        Console.ReadLine();
+    }
+
+    static void UseAction(Action action)
+    {
+        action();
+    }
+
+    static T UseFunc<T>(Func<int, int, T> func, int a, int b)
+    {
+        return func(a, b);
+    }
+
+    static bool UsePredicate(Predicate<int> predicate, int value)
+    {
+        return predicate(value);
+    }
+}
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Func<int, int, int> add = (a, b) => a + b;
+        Console.WriteLine($"Sum: {add(5, 3)}");
+
+        Action printMessage = () => Console.WriteLine("Lambda method executed.");
+        printMessage();
+
+        Console.ReadLine();
+    }
+}
