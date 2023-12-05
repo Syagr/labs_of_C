@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Local settings (.vs)",
+    "\\Local settings (.vs)\\labs_of_C",
+    "\\Local settings (.vs)\\labs_of_C\\FileContentIndex",
+    "\\Local settings (.vs)\\labs_of_C\\v17"
   ],
-  "SelectedNode": "\\C:\\Users\\pasha\\Source\\Repos\\labs_of_C",
+  "SelectedNode": "\\labs_4",
   "PreviewInSolutionExplorer": false
 }

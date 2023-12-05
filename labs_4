@@ -4,6 +4,11 @@ public static class Math
 {
     public static double Pow(this double x, int n)
     {
+        if (n < 0)
+        {
+            throw new ArgumentException("n must be non-negative");
+        }
+
         double result = 1;
 
         for (int i = 0; i < n; i++)
@@ -19,18 +24,19 @@ public static class StringExtensions
 {
     public static string ToUpper(this string str)
     {
-        return str.ToUpper();
+        return str.ToUpperInvariant();
     }
 }
 
-class Program
+
+public partial class Program
 {
     static void Main(string[] args)
     {
         double x = 5.0;
         double y = x.Pow(2);
 
-        Console.WriteLine($"5 to squere: {y}");
+        Console.WriteLine($"5 to the power of 2: {y}");
 
         string str = "Hello, world!";
         string upperStr = str.ToUpper();
@@ -38,5 +44,3 @@ class Program
         Console.WriteLine(upperStr);
     }
 }
-
-
