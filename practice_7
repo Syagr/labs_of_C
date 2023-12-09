@@ -1,0 +1,64 @@
+using System;
+
+// Інтерфейс для роботи з голосовим вводом
+public interface IVoiceInput
+{
+    // Делегат для обробки розпізнаних голосових команд
+    public delegate void VoiceCommandHandler(string command);
+
+    // Событие для сповіщення про виявлення нової голосової команди
+    event VoiceCommandHandler OnVoiceCommand;
+
+    // Метод для запуску розпізнавання голосу
+    void StartVoiceRecognition();
+
+    // Метод для зупинки розпізнавання голосу
+    void StopVoiceRecognition();
+}
+
+// Клас для роботи з голосовим вводом
+public class VoiceInput : IVoiceInput
+{
+    // Ініціалізація події в конструкторі
+    public event IVoiceInput.VoiceCommandHandler OnVoiceCommand = delegate { };
+
+    // Метод для запуску розпізнавання голосу
+    public void StartVoiceRecognition()
+    {
+        // Ваш код для початку розпізнавання голосу
+        // Після розпізнавання викликайте подію OnVoiceCommand
+        string recognizedCommand = "приклад команди";
+        OnVoiceCommand?.Invoke(recognizedCommand);
+    }
+
+    // Метод для зупинки розпізнавання голосу
+    public void StopVoiceRecognition()
+    {
+        // Ваш код для зупинки розпізнавання голосу
+    }
+}
+
+// Приклад використання
+class Program
+{
+    static void Main()
+    {
+        // Створюємо об'єкт класу для роботи з голосовим вводом
+        IVoiceInput voiceInput = new VoiceInput();
+
+        // Підписуємося на подію виявлення голосової команди
+        voiceInput.OnVoiceCommand += HandleVoiceCommand;
+
+        // Запускаємо розпізнавання голосу
+        voiceInput.StartVoiceRecognition();
+
+        // Зупиняємо розпізнавання голосу
+        voiceInput.StopVoiceRecognition();
+    }
+
+    // Обробник події виявлення голосової команди
+    static void HandleVoiceCommand(string command)
+    {
+        Console.WriteLine($"Розпізнана команда: {command}");
+    }
+}
