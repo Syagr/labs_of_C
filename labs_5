@@ -57,3 +57,4 @@ class Program
         ExceptionHandler.HandleException(MyClass.CustomMethod);
     }
 }
+

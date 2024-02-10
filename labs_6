@@ -44,3 +44,4 @@ class Program
         return predicate(value);
     }
 }
+
